@@ -1,0 +1,47 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  My App
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+
+    <mat-nav-list>
+
+      <mat-list-item routerLink="my-files" routerLinkActive="active">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <div mat-line>My Files</div>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item routerLink="shared-with-me" routerLinkActive="active">
+        <mat-icon mat-list-icon>person</mat-icon>
+        <div mat-line>Shared with me</div>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item routerLink="stared" routerLinkActive="active">
+        <mat-icon mat-list-icon>star</mat-icon>
+        <div mat-line>Stared</div>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
