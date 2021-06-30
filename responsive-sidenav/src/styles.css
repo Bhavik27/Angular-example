@@ -3,9 +3,8 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
 .mat-toolbar{
-    background-color: #212121;
+    background-image: linear-gradient(to right, #3ec1d3, #5ccbdd, #75d5e7, #8ce0f1, #a1eafb);
     color: #FFFFFF;
 }
 
@@ -15,13 +14,11 @@ mat-sidenav-container,mat-sidenav-content div{
 mat-sidenav{
     width: 280px;
     min-width: 250px;
-    background-color: #323232  !important;
+    background-color: white  !important;
 }
-.mat-list-base .mat-list-item{
-    color: #0D7377 !important;
-}
-
+.mat-list-base .mat-list-item{ color: grey !important; }
+.mat-list-base{padding: 0 !important;}
 .mat-list-item.active{
-    color: #14FFEC !important;
-    background-color: rgb(84, 84, 84)  !important;
+    color: #185ADB !important;
+    background-color: whitesmoke !important;
 }
