@@ -1,27 +1,76 @@
 # ResponsiveSidenav
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5. and [Angular Material](https://material.angular.io) version 12.0.5.
 
-## Development server
+![](https://github.com/Bhavik27/Angular-example/blob/main/responsive-sidenav/screen-capture.gif)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### ```BreakpointObserver``` and ```ChangeDetectorRef``` used to make Angular Material sidenav responsive
 
-## Code scaffolding
+*app.component.ts*
+```
+@ViewChild(MatSidenav)
+  sidenav!: MatSidenav;
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  constructor(private observer: BreakpointObserver,
+    private cdkRef: ChangeDetectorRef) { }
 
-## Build
+  ngAfterViewInit() {
+    this.observer.observe(['(max-width: 768px)']).subscribe((res) => {
+      if (res.matches) {
+        this.sidenav.mode = 'over';
+        this.sidenav.close();
+      } else {
+        this.sidenav.mode = 'side';
+        this.sidenav.open();
+      }
+    });
+    this.cdkRef.detectChanges()
+  }
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+*app.component.html*
+```
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  My App
+</mat-toolbar>
 
-## Running unit tests
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    <mat-nav-list>
+    ....
+    </mat-nav-list>
 
-## Running end-to-end tests
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+*styles.css*
+```
+.mat-toolbar{
+    background-coloe: blue;
+    color: #FFFFFF;
+}
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+mat-sidenav-container,mat-sidenav-content div{
+    height: calc(100vh - 65px);
+}
+mat-sidenav{
+    width: 280px;
+    min-width: 250px;
+    background-color: white  !important;
+}
+```
