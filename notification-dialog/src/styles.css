@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.success-primary{
+    background-color: #01937C;
+    color: white    ;
+}
+.warning-primary{
+    background-color: #FFCC29;
+    color: white    ;
+}
+.error-primary{
+    background-color: #CE1212;
+    color: white    ;
+}
+
+.success-secondry{
+    background-color: white    ;
+    color: #01937C;
+}
+.warning-secondry{
+    background-color: white    ;
+    color: #FFCC29;
+}
+.error-secondry{
+    background-color: white    ;
+    color: #CE1212;
+}
+.mat-dialog-container{padding: 0 !important;overflow: inherit !important;}
+.mat-dialog-title{ font-size: 2rem;padding: 0.5rem; }
